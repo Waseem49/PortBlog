@@ -1,70 +1,74 @@
 .container {
+  width: 90%;
   display: flex;
+  justify-content: space-around;
   align-items: center;
-  flex-direction: column;
-  gap: 20px;
 }
-
-.title {
-  color: #bbb;
+.imagecon {
 }
-
-.subtitle {
-  font-size: 20px;
-  margin-bottom: 30px;
-  color: #bbb;
+.h2 {
+  text-align: center;
+  padding: 1.5rem 0;
 }
-
+.img {
+  border-radius: 30%;
+  object-fit: cover;
+  animation: slide-in 1s ease-in-out;
+}
+@keyframes slide-in {
+  0% {
+    transform: translateX(-100%);
+  }
+  100% {
+    transform: translateX(50);
+  }
+}
 .form {
-  width: 300px;
   display: flex;
   flex-direction: column;
-  gap: 20px;
+  gap: 1.3rem;
+  text-align: center;
 }
-
-.input {
-  padding: 20px;
-  background-color: transparent;
-  border: 2px solid #bbb;
-  border-radius: 5px;
-  outline: none;
-  color: #bbb;
+.form input {
   font-size: 20px;
-  font-weight: bold;
-}
-
-.button {
-  width: 300px;
-  padding: 20px;
-  cursor: pointer;
-  background-color: #53c28b;
-  border: none;
+  padding: 5px;
   border-radius: 5px;
-  color: #eee;
+  color: #bbb;
+  outline: none;
+  background-color: transparent;
+  border: 3px solid #bbb;
+}
+.form input:focus {
+  box-shadow: 0 0 10px rgb(255, 238, 0);
+}
+.logbtn {
+  width: 100%;
+  background-image: linear-gradient(to right, #fbeb0c, #fb800c, #e3baba);
+  margin: 0;
+  color: #fff;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 17px;
   font-weight: bold;
 }
-
-.button:hover {
-  background-color: #49b07d;
+.goobtn {
+  margin: 0;
+  width: 100%;
+  background-image: linear-gradient(to right, #0cfb54, #200cfb, #e3bac1);
+  color: #000000;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 17px;
+  font-weight: bold;
 }
-
-.or {
-  color: #bbb;
-}
-
-.link {
+.p {
+  text-align: center;
   text-decoration: underline;
-  color: #7d7c7c;
 }
-
-.link:hover {
-  color: rgb(61, 61, 61);
-}
-
-.google {
-  background-color: rgba(228, 97, 50, 0.72);
-}
-
-.google:hover {
-  background-color: rgba(228, 97, 50, 0.803);
+.pp {
+  margin: 0;
+  padding: 0;
+  color: red;
 }

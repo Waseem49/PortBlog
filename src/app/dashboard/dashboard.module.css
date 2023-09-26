@@ -1,19 +1,59 @@
-.container {
+.main {
   display: flex;
-  gap: 100px;
+  justify-content: space-evenly;
+  align-items: center;
+}
+.postcon {
+  height: 100dvh;
+  overflow-y: scroll;
 }
 
-.posts {
-  flex: 1;
+.postcon::-webkit-scrollbar {
+  width: 2px;
 }
 
+.postcon::-webkit-scrollbar-track {
+  background-color: #e1b34e;
+}
+
+.postcon::-webkit-scrollbar-thumb {
+  background-color: black;
+}
+.h33 {
+  text-align: center;
+  padding: 1rem 0;
+}
+.form {
+  display: flex;
+  flex-direction: column;
+  gap: 1.3rem;
+  text-align: center;
+  margin: auto;
+}
+.form input {
+  font-size: 20px;
+  padding: 5px;
+  border-radius: 5px;
+  color: #bbb;
+  outline: none;
+  background-color: transparent;
+  border: 3px solid #bbb;
+}
+.form input:focus {
+  box-shadow: 0 0 10px rgb(255, 238, 0);
+}
+.btn {
+  width: 100%;
+}
 .post {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  margin: 50px 0px;
+  margin: 50px 10px;
 }
-
+.postTitle {
+  padding: 0 0 0 0.5rem;
+}
 .imgContainer {
   width: 200px;
   height: 100px;
@@ -25,34 +65,7 @@
 }
 
 .delete {
+  padding: 0 1.5rem;
   cursor: pointer;
   color: red;
-}
-
-.new {
-  flex: 1;
-  display: flex;
-  flex-direction: column;
-  gap: 20px;
-}
-
-.input,
-.textArea {
-  padding: 10px;
-  background-color: transparent;
-  border: 2px solid #bbb;
-  border-radius: 3px;
-  color: #bbb;
-  font-size: 20px;
-  font-weight: bold;
-}
-
-.button {
-  padding: 20px;
-  cursor: pointer;
-  background-color: #53c28b;
-  border: none;
-  border-radius: 5px;
-  color: #eee;
-  font-weight: bold;
 }
