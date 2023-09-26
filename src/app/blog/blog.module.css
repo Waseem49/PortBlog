@@ -1,0 +1,66 @@
+.container {
+  /* Styles for container */
+}
+
+.blog {
+  margin: 1.2rem 0;
+}
+
+.item {
+  margin-top: 20px;
+  display: flex;
+  flex-direction: row-reverse;
+  gap: 50px;
+}
+
+.contenet {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 10px;
+  flex: 1;
+}
+
+.imgcon {
+  flex: 1;
+  height: 400px;
+  position: relative;
+}
+
+.img {
+  object-fit: cover;
+}
+
+.p {
+  margin: 2rem 0;
+}
+
+.admin {
+  margin: 10px 10px;
+  display: flex;
+  gap: 10px;
+  align-items: center;
+}
+
+/* Media Query for smaller screens */
+@media (max-width: 768px) {
+  .item {
+    flex-direction: column;
+    gap: 20px;
+  }
+
+  .imgcon {
+    height: 300px;
+  }
+}
+
+/* Media Query for even smaller screens */
+@media (max-width: 480px) {
+  .item {
+    gap: 10px;
+  }
+
+  .imgcon {
+    height: 200px;
+  }
+}

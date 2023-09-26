@@ -1,0 +1,26 @@
+.container {
+}
+.item {
+  margin-top: 20px;
+  display: flex;
+  flex-direction: row-reverse;
+  gap: 50px;
+}
+.item:nth-child(2n) {
+  flex-direction: row;
+}
+.contenet {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 10px;
+  flex: 1;
+}
+.imgcon {
+  flex: 1;
+  height: 400px;
+  position: relative;
+}
+.img {
+  object-fit: cover;
+}
