@@ -1,75 +1,81 @@
 "use client";
-import Image from "next/image";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import styles from "@/app/dashboard/(auth)/login/login.module.css";
+import { getProviders, signIn, useSession } from "next-auth/react";
+import { useRouter, useSearchParams } from "next/navigation";
 import Link from "next/link";
-import { useRouter } from "next/navigation";
-import { signIn, useSession } from "next-auth/react";
 
-const Login = () => {
-  const [err, setError] = useState(false);
-  const router = useRouter();
+const Login = ({ url }) => {
   const session = useSession();
-  const init = {
-    email: "",
-    password: "",
-  };
-  const [user, setuser] = useState(init);
-  const handlechange = (e) => {
-    const { name, value } = e.target;
-    setuser((prev) => ({ ...prev, [name]: value }));
-  };
-  const handlesubmit = async (e) => {
-    e.preventDefault();
-    signIn("credentials", user);
-  };
+  const router = useRouter();
+  const params = useSearchParams();
+  const [error, setError] = useState("");
+  const [success, setSuccess] = useState("");
+
+  useEffect(() => {
+    setError(params.get("error"));
+    setSuccess(params.get("success"));
+  }, [params]);
+
   if (session.status === "loading") {
     return <p>Loading...</p>;
   }
+
   if (session.status === "authenticated") {
-    return router?.push("/dashboard");
+    router?.push("/dashboard");
   }
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    const email = e.target[0].value;
+    const password = e.target[1].value;
+
+    signIn("credentials", {
+      email,
+      password,
+    });
+  };
+
   return (
     <div className={styles.container}>
-      <div className={styles.imagecon}>
-        <Image
-          className={styles.img}
-          src={
-            "https://img.freepik.com/free-vector/access-control-system-abstract-concept_335657-3180.jpg?w=740&t=st=1688842771~exp=1688843371~hmac=22a46f736bf9b0a5b5baff8ec9cdd51e8949a98dcf554a94c6cf7ee5f7bd0296"
-          }
-          alt="loginimage"
-          width={450}
-          height={400}
+      <h1 className={styles.title}>{success ? success : "Welcome Back"}</h1>
+      <h2 className={styles.subtitle}>Please sign in to see the dashboard.</h2>
+
+      <form onSubmit={handleSubmit} className={styles.form}>
+        <input
+          type="text"
+          placeholder="Email"
+          required
+          className={styles.input}
         />
-      </div>
-      <div>
-        <h2 className={styles.h2}>USER LOGIN</h2>
-        <form className={styles.form} onSubmit={handlesubmit}>
-          <input
-            type="text"
-            placeholder="example@gmail.com"
-            onChange={(e) => handlechange(e)}
-            value={user.email}
-            name="email"
-          />
-          <input
-            type="text"
-            placeholder="Password"
-            onChange={(e) => handlechange(e)}
-            value={user.password}
-            name="password"
-          />
-          <p className={styles.pp}>{err ? "wrong credential" : ""}</p>
-          <button className={styles.logbtn}>Login</button>
-          <p>-or-</p>
-          <p className={styles.p}>
-            <Link href={"/dashboard/register"}>Create new account</Link>
-          </p>
-        </form>
-        <button className={styles.goobtn} onClick={() => signIn("google")}>
-          Login with Google
-        </button>
-      </div>
+        <input
+          type="password"
+          placeholder="Password"
+          required
+          className={styles.input}
+        />
+        <button className={styles.button}>Login</button>
+        {error && error}
+      </form>
+      <button
+        onClick={() => {
+          signIn("google");
+        }}
+        className={styles.button + " " + styles.google}>
+        Login with Google
+      </button>
+      <span className={styles.or}>- OR -</span>
+      <Link className={styles.link} href="/dashboard/register">
+        Create new account
+      </Link>
+      {/* <button
+        onClick={() => {
+          signIn("github");
+        }}
+        className={styles.button + " " + styles.github}
+      >
+        Login with Github
+      </button> */}
     </div>
   );
 };

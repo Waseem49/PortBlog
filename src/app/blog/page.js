@@ -18,35 +18,31 @@ async function getData() {
 
 const Blog = async () => {
   const data = await getData();
-  if (!data) {
-    return <h1>Error</h1>;
-  } else {
-    return (
-      <>
-        {data?.data?.map((it) => (
-          <div key={it.id} className={styles.container}>
-            <div className={styles.item}>
-              <div className={styles.contenet}>
-                <h1>{it.title}</h1>
-                <p>{it.desc}</p>
-                <Link href={`blog/${it._id}`}>
-                  <button>See More</button>
-                </Link>
-              </div>
-              <div className={styles.imgcon}>
-                <Image
-                  src="https://static.vecteezy.com/system/resources/previews/003/521/522/large_2x/angry-werewolf-on-red-blood-moon-illustration-free-vector.jpg"
-                  alt=""
-                  fill={true}
-                  className={styles.img}
-                />
-              </div>
+  return (
+    <>
+      {data?.data?.map((it) => (
+        <div key={it.id} className={styles.container}>
+          <div className={styles.item}>
+            <div className={styles.contenet}>
+              <h1>{it.title}</h1>
+              <p>{it.desc}</p>
+              <Link href={`blog/${it._id}`}>
+                <button>See More</button>
+              </Link>
+            </div>
+            <div className={styles.imgcon}>
+              <Image
+                src="https://static.vecteezy.com/system/resources/previews/003/521/522/large_2x/angry-werewolf-on-red-blood-moon-illustration-free-vector.jpg"
+                alt=""
+                fill={true}
+                className={styles.img}
+              />
             </div>
           </div>
-        ))}
-      </>
-    );
-  }
+        </div>
+      ))}
+    </>
+  );
 };
 
 export default Blog;
